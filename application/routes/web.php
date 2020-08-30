@@ -230,7 +230,25 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::get('export/report/birthdays', 'Admin\ExportsController@birthdaysReport');
 			Route::get('export/report/accounts', 'Admin\ExportsController@accountReport');
 			Route::post('export/report/schedule', 'Admin\ExportsController@scheduleReport');
-		});
+
+            /*
+            |--------------------------------------------------------------------------
+            | Price: plus menus
+            |--------------------------------------------------------------------------
+            */
+            // Price
+            Route::resource('/plus-minus','Admin\PlusMinusController');
+
+
+
+            /*
+            |--------------------------------------------------------------------------
+            | Report : user price
+            |--------------------------------------------------------------------------
+            */
+            // User price
+
+        });
 
 		Route::group(['middleware' => 'employee'], function () {
 			/*
@@ -264,7 +282,7 @@ Route::group(['middleware' => 'auth'], function () {
 			Route::get('view/personal/leave', 'Personal\PersonalLeavesController@viewPL');
 
 			// settings 
-			Route::get('personal/settings', 'Personal\PersonalSettingsController@index');
+			Route::get('personal/seemployeesttings', 'Personal\PersonalSettingsController@index');
 
 			// user 
 			Route::get('personal/update-user', 'Personal\PersonalAccountController@viewUser')->name('changeUser');

@@ -100,6 +100,12 @@
                         <p>{{ __('Settings') }}</p>
                     </a>
                 </li>
+                <li>
+                    <a href="{{ url('plus-minus') }}">
+                        <i class="ui icon cog"></i>
+                        <p>{{ __('Plus - minus price') }}</p>
+                    </a>
+                </li>
             </ul>
         </nav>
 

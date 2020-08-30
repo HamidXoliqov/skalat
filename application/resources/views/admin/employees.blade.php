@@ -40,10 +40,11 @@
                             <td>{{ $employee->jobposition }}</td>
                             <td>@if($employee->employmentstatus == 'Active') Active @else Archived @endif</td>
                             <td class="align-right">
-                            <a href="{{ url('/profile/view/'.$employee->reference) }}" class="ui circular basic icon button tiny"><i class="file alternate outline icon"></i></a>
-                            <a href="{{ url('/profile/edit/'.$employee->reference) }}" class="ui circular basic icon button tiny"><i class="edit outline icon"></i></a>
-                            <a href="{{ url('/profile/delete/'.$employee->reference) }}" class="ui circular basic icon button tiny"><i class="trash alternate outline icon"></i></a>
-                            <a href="{{ url('/profile/archive/'.$employee->reference) }}" class="ui circular basic icon button tiny"><i class="archive icon"></i></a>
+                            <a href="{{ url('/profile/view/'.$employee->reference) }}" class="ui circular basic icon button tiny" title="Report"><i class="file alternate outline icon"></i></a>
+                            <a href="{{ url('/profile/view/'.$employee->reference) }}" class="ui circular basic icon button tiny" title="View"><i class="file alternate outline icon"></i></a>
+                            <a href="{{ url('/profile/edit/'.$employee->reference) }}" class="ui circular basic icon button tiny" title="Edit"><i class="edit outline icon"></i></a>
+                            <a href="{{ url('/profile/delete/'.$employee->reference) }}" class="ui circular basic icon button tiny" title="Delete"><i class="trash alternate outline icon"></i></a>
+                            <a href="{{ url('/profile/archive/'.$employee->reference) }}" class="ui circular basic icon button tiny" title="Archive"><i class="archive icon"></i></a>
                             </td>
                             </tr>
                         @endforeach
