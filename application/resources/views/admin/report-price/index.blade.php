@@ -54,7 +54,6 @@
                                 <th>{{ __('Time Out') }}</th>
                                 <th>{{ __('Total Hours') }}</th>
                                 <th>{{ __('Time (+/-)') }}</th>
-                                {{--<th>{{ __('User') }}</th>--}}
                                 <th>{{ __('Status (In/Out)') }}</th>
                                 @isset($ss)
                                     @if($ss->clock_comment == "on")
@@ -113,26 +112,6 @@
                                     @endisset
                                 </td>
                                 <td>
-                                    @isset($d->plus_date)
-                                        @if($d->plus_date != null)
-                                            @php
-                                                if(stripos($d->plus_date, ":") === false) {
-                                                    $h = $d->plus_date;
-                                                } else {
-                                                    $HM = explode(':', $d->plus_date);
-                                                    $h = $HM[0];
-                                                    $m = $HM[1];
-                                                }
-                                            @endphp
-                                        @endif
-                                        @if($d->plus_date != null)
-                                            @if(stripos($d->plus_date, ":") === false)
-                                                {{ $h }} hr
-                                            @else
-                                                ( {{ $h }} : {{ $m }} )
-                                            @endif
-                                        @endif
-                                    @endisset
                                     @isset($d->minus_date)
                                         @if($d->minus_date != null)
                                             @php
@@ -149,24 +128,43 @@
                                             @if(stripos($d->minus_date, ":") === false)
                                                 {{ $h }} hr
                                             @else
+                                                ( {{ $h }} : {{ $m }} )
+                                            @endif
+                                        @endif
+                                    @endisset
+                                    @isset($d->plus_date)
+                                        @if($d->plus_date != null)
+                                            @php
+                                                if(stripos($d->plus_date, ":") === false) {
+                                                    $h = $d->plus_date;
+                                                } else {
+                                                    $HM = explode(':', $d->plus_date);
+                                                    $h = $HM[0];
+                                                    $m = $HM[1];
+                                                }
+                                            @endphp
+                                        @endif
+                                        @if($d->plus_date != null)
+                                            @if(stripos($d->plus_date, ":") === false)
+                                                {{ $h }} hr
+                                            @else
                                                 / ( {{ $h }} : {{ $m }} )
                                             @endif
                                         @endif
                                     @endisset
+
                                 </td>
-                                {{--<td>{{ _('+/-') }}</td>--}}
-                                {{--<td></td>--}}
                                 <td>
-                                    {{--@if($d->status_timein != null OR $d->status_timeout != null) --}}
-                                        {{--<span class="@if($d->status_timein == 'Late In') orange @else blue @endif">{{ $d->status_timein }}</span> / --}}
-                                        {{--@isset($d->status_timeout) --}}
-                                            {{--<span class="@if($d->status_timeout == 'Early Out') red @else green @endif">--}}
-                                                {{--{{ $d->status_timeout }}--}}
-                                            {{--</span> --}}
-                                        {{--@endisset--}}
-                                    {{--@else--}}
-                                        {{--<span class="blue">{{ $d->status_timein }}</span>--}}
-                                    {{--@endif --}}
+                                    @if($d->status_timein != null OR $d->status_timeout != null)
+                                        <span class="@if($d->status_timein == 'Late In') orange @else blue @endif">{{ $d->status_timein }}</span> /
+                                        @isset($d->status_timeout)
+                                            <span class="@if($d->status_timeout == 'Early Out') red @else green @endif">
+                                                {{ $d->status_timeout }}
+                                            </span>
+                                        @endisset
+                                    @else
+                                        <span class="blue">{{ $d->status_timein }}</span>
+                                    @endif
                                 </td>
                                 @isset($ss)
                                     @if($ss->clock_comment == "on")

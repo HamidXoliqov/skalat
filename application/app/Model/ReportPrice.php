@@ -27,6 +27,8 @@ class ReportPrice extends Model
         'price',
         'summ',
         'reason',
+        'status_timein',
+        'status_timeout',
     ];
     public static function boot()
     {
@@ -43,7 +45,8 @@ class ReportPrice extends Model
             $model->first_name = $firstname;
             $model->position = $data['mi'];
             $model->price = $data['price'];
-//            die($data);
+            $model->status_timein = ReportPrice::statusin($model['statr_date']);
+//            die($model['statr_date']);
 
         });
     }
@@ -59,6 +62,7 @@ class ReportPrice extends Model
         $this->totalhours = ReportPrice::totalhours($filds['statr_date'],$filds['end_date']);
         $this->minus_date = ReportPrice::minustime($filds['statr_date']);
         $this->plus_date = ReportPrice::plustime($filds['end_date']);
+        $this->status_timeout = ReportPrice::statusout($filds['end_date']);
 //        dd(explode(":",$filds['statr_date'])[1]);
         $this->save();
     }
@@ -83,7 +87,7 @@ class ReportPrice extends Model
         else
         {
             $nat_min = $end_min-$start_min-1;
-            $nat_sec = 60 - $end_sec-$start_sec;
+            $nat_sec = 60 - $start_sec-$end_sec;
         }
         return $nat_min.' : '.$nat_sec;
     }
@@ -102,10 +106,10 @@ class ReportPrice extends Model
         }
         else
         {
-            $natmin = 9-$min;
-            $natsec = $sec;
+            $natmin = 8-$min;
+            $natsec = 60-$sec;
         }
-        return $natmin.':'.$sec;
+        return $natmin.':'.$natsec;
     }
     //------------------
     public static function plustime($time)
@@ -122,9 +126,41 @@ class ReportPrice extends Model
         }
         else
         {
-            $natmin = 18-$min;
-            $natsec = $sec;
+            $natmin = 17-$min;
+            $natsec = 60-$sec;
         }
-        return $natmin.':'.$sec;
+        return $natmin.':'.$natsec;
+    }
+    public static function statusin($time)
+    {
+        if(9>intval(explode(":",$time)[0]))
+        {
+            $str = 'Ok';
+        }
+        elseif (9==intval(explode(":",$time)[0]) && 15 >= intval(explode(":",$time)[1]))
+        {
+            $str = 'On Time';
+        }
+        else
+        {
+            $str = 'Late In';
+        }
+        return $str;
+    }
+    public static function statusout($time)
+    {
+        if(18>intval(explode(":",$time)[0]))
+        {
+            $str = 'Early Out';
+        }
+        elseif (17==intval(explode(":",$time)[0]) && 45 <= intval(explode(":",$time)[1]))
+        {
+            $str = 'On Time';
+        }
+        else
+        {
+            $str = 'Ok';
+        }
+        return $str;
     }
 }
