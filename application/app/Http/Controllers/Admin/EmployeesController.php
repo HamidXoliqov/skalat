@@ -66,7 +66,7 @@ class EmployeesController extends Controller
 
 	public function new() 
 	{
-		if (permission::permitted('employees-add')=='fail'){ return redirect()->route('denied'); }
+            if (permission::permitted('employees-add')=='fail'){ return redirect()->route('denied'); }
 		
 		$employees = table::people()->get();
 		$company = table::company()->get();

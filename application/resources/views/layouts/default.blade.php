@@ -100,6 +100,12 @@
                         <p>{{ __('Settings') }}</p>
                     </a>
                 </li>
+                <li class="">
+                    <a href="{{ url('report-price') }}">
+                        <i class="ui icon chart bar outline"></i>
+                        <p>{{ __('Report price') }}</p>
+                    </a>
+                </li>
                 <li>
                     <a href="{{ url('plus-minus') }}">
                         <i class="ui icon cog"></i>

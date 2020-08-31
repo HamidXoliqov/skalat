@@ -247,6 +247,8 @@ Route::group(['middleware' => 'auth'], function () {
             |--------------------------------------------------------------------------
             */
             // User price
+            Route::resource('/report-price','Admin\ReportPriceController');
+
 
         });
 
