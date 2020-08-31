@@ -106,7 +106,7 @@
                                     <label>{{ __('Start date') }}</label>
                                     <input type="text" name="start_date" value="" class="airdatepicker" data-position="top right" placeholder="Start date"> 
                                 </div>
-                                <div class="field">
+                                <div class="field" style="margin-left: 10px">
                                     <label>{{ __('End date') }}</label>
                                     <input type="text" name="end_date" value="" class="airdatepicker" data-position="top right" placeholder="End date"> 
                                 </div>

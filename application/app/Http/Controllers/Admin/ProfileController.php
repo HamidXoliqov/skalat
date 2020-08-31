@@ -117,7 +117,8 @@ class ProfileController extends Controller
 		$lastname = mb_strtoupper($request->lastname);
 		$firstname = mb_strtoupper($request->firstname);
 		$mi = mb_strtoupper($request->mi);
-		$age = $request->age;
+        $price = mb_strtoupper($request->price);
+        $age = $request->age;
 		$gender = mb_strtoupper($request->gender);
 		$emailaddress =  mb_strtolower($request->emailaddress);
 		$civilstatus = mb_strtoupper($request->civilstatus);
@@ -125,6 +126,8 @@ class ProfileController extends Controller
 		$weight = $request->weight;
 		$mobileno = $request->mobileno;
 		$birthday = date("Y-m-d", strtotime($request->birthday));
+        $start_date = date("Y-m-d", strtotime($request->start_date));
+        $end_date = date("Y-m-d", strtotime($request->end_date));
 		$nationalid = mb_strtoupper($request->nationalid);
 		$birthplace = mb_strtoupper($request->birthplace);
 		$homeaddress = mb_strtoupper($request->homeaddress);
@@ -154,13 +157,16 @@ class ProfileController extends Controller
 			'firstname' => $firstname,
 			'mi' => $mi,
 			'age' => $age,
-			'gender' => $gender,
+            'price' => $price,
+            'gender' => $gender,
 			'emailaddress' => $emailaddress,
 			'civilstatus' => $civilstatus,
 			'height' => $height,
 			'weight' => $weight,
 			'mobileno' => $mobileno,
 			'birthday' => $birthday,
+            'start_date' => $start_date,
+            'end_date' => $end_date,
 			'birthplace' => $birthplace,
 			'nationalid' => $nationalid,
 			'homeaddress' => $homeaddress,

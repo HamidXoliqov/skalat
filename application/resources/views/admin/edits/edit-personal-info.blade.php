@@ -104,6 +104,20 @@
                                     <input type="text" name="birthday" value="@isset($person_details->birthday){{ $person_details->birthday }}@endisset" class="airdatepicker" placeholder="Date">
                                 </div>
                             </div>
+                            <div class="two fields">
+                                <div class="field">
+                                    <label>{{ __('Start date') }}</label>
+                                    <input type="text" name="start_date" value="@isset($person_details->start_date){{ $person_details->start_date }}@endisset" class="airdatepicker" placeholder="Start date">
+                                </div>
+                                <div class="field" style="margin-left: 10px">
+                                    <label>{{ __('End date') }}</label>
+                                    <input type="text" name="end_date" value="@isset($person_details->end_date){{ $person_details->end_date }}@endisset" class="airdatepicker" placeholder="End date">
+                                </div>
+                                <div class="field">
+                                    <label>{{ __('Price') }}</label>
+                                    <input type="text" name="price" value="@isset($person_details->price){{ $person_details->price }}@endisset" placeholder="Price">
+                                </div>
+                            </div>
                             <div class="field">
                                 <label>{{ __('National ID') }}</label>
                                 <input type="text" class="uppercase" name="nationalid" value="@isset($person_details->nationalid){{ $person_details->nationalid }}@endisset" placeholder="">
